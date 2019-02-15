@@ -16,39 +16,40 @@
     </style>
 </head>
 <body>
+
     <div id="starT">
-            <button onclick="starTimer()">Start Timer</button>
+            <button onclick="startTimer()">Start Timer</button>
            <br>
            
-            <input id="number" type="number" value="30" onchange="changeWaitT()">
+            <input id="number" type="number" value="30" onchange="updateMinutes()">
     </div>
 
    
    
     <script>
-        let timeStarted = false;
+        var timeStarted = false;
 
         
-        let minutes = parseFloat(document.querySelector("#number").value);
+        var minutes = parseFloat(document.querySelector("#number").value);
        
-        function starTimer(){
-            let minutes = 0;
-            let timeStarted = true;
+        function startTimer(){
+            var minutes = 0;
+            var timeStarted = true;
             updateTime();
 
         }   
         function updateTime(){
             
            
-            document.title =  "-"  +minutes +"-";
+            document.title =  "-"  + minutes + "-";
             if(minutes === 0){
-                document.title = "Break Walk!!";
+                document.title = "Break Time!";
                 return;
             }
             minutes -= 1;
             setTimeout(updateTime, 1000 * 60);
         }
-        function changeWaitT(){
+        function updateMinutes(){
             if(timeStarted === false){
                 minutes = parseFloat(document.querySelector("#number").value);
             }
