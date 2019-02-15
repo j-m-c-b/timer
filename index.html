@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Start The Timer</title>
+
     <style>
     body{
         background-color: black;
@@ -14,12 +15,14 @@
         text-align: center;
     }
     </style>
+    
 </head>
 <body>
 
     <div id="starT">
             <button onclick="startTimer()">Start Timer</button>
-           <br>
+           
+            <br>
            
             <input id="number" type="number" value="30" onchange="updateMinutes()">
     </div>
@@ -38,9 +41,8 @@
             updateTime();
 
         }   
+
         function updateTime(){
-            
-           
             document.title =  "-"  + minutes + "-";
             if(minutes === 0){
                 document.title = "Break Time!";
