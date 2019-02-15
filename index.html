@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Start The Timer</title>
+    <style>
+    body{
+        background-color: black;
+        color: white;
+    }
+    div#starT{
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+    <div id="starT">
+            <button onclick="starTimer()">Start Timer</button>
+           <br>
+           
+            <input id="number" type="number" value="30" onchange="changeWaitT()">
+    </div>
+
+   
+   
+    <script>
+        let timeStarted = false;
+
+        
+        let minutes = parseFloat(document.querySelector("#number").value);
+       
+        function starTimer(){
+            let minutes = 0;
+            let timeStarted = true;
+            updateTime();
+
+        }   
+        function updateTime(){
+            
+           
+            document.title =  "-"  +minutes +"-";
+            if(minutes === 0){
+                document.title = "Break Walk!!";
+                return;
+            }
+            minutes -= 1;
+            setTimeout(updateTime, 1000 * 60);
+        }
+        function changeWaitT(){
+            if(timeStarted === false){
+                minutes = parseFloat(document.querySelector("#number").value);
+            }
+
+        }
+        
+    </script>
+</body>
+
+</html>
