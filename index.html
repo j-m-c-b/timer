@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Start The Timer</title>
+
+    <style>
+    body{
+        background-color: black;
+        color: white;
+    }
+    div#starT{
+        text-align: center;
+    }
+    </style>
+    
+</head>
+<body>
+    
+        
+    <div id="starT">
+        <h1>Timer</h1>
+            <select id="domUnitOfTime">
+                    <option value="seconds">Seconds</option>
+                    <option value="minutes">Minutes</option>
+            </select>
+
+            <br>
+            <br>
+            How Much Time: <input id="number" type="number" value="10" onchange="updateTime()">
+            <br>
+            <br>
+            <br>
+            <br>
+            <button onclick="startTimer()">Start Timer</button>
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <audio src="endSound.ogg"></audio>
+            <!-- <div> Time Left Countdown: <span id="domCurrentTimeLeft"></span></div>
+            -->
+           
+           
+       
+    </div>
+
+   
+   
+    <script>
+        var timeStarted = false;
+
+        var endSound = new Audio("endSound.ogg");
+        endSound.type = 'audio/ogg';
+
+
+        var domUnitOfTime = document.getElementById("domUnitOfTime");
+
+        // var domCurrentTimeLeft = document.getElementById("domCurrentTimeLeft");
+
+        
+        var time = parseFloat(document.querySelector("#number").value);
+
+        var seconds = 0;
+        var minutes = 0
+ 
+
+        let currentIntervaID;
+       
+        function startTimer(){
+            var selectedValue = domUnitOfTime.options[domUnitOfTime.selectedIndex].value;
+
+            var timeStarted = true;
+            
+            updateTime();
+
+            if(currentIntervaID !== undefined){
+                clearInterval(currentIntervaID);
+            }
+            
+            if(selectedValue === "seconds"){
+                seconds = time;
+                currentIntervaID = setInterval(updateSeconds, 1000);
+                document.title =  "-"  + seconds + "- Second(s)";
+
+                
+                
+
+            }else if(selectedValue === "minutes"){
+                minutes = time;
+                currentIntervaID = setInterval(updateMinutes, 1000 * 60);
+                document.title =  "-"  + minutes + "- Minute(s)";
+
+            }
+        }   
+        function updateSeconds(){
+           
+            
+            seconds -= 1;
+            document.title =  "-"  + seconds + "-  Second(s)";
+
+
+            if(seconds === 0){
+
+                document.title = "Break Time!";
+                clearInterval(currentIntervaID);
+
+                endSound.play();
+                return;
+            }
+               
+               
+            
+           
+           
+           
+
+        }
+
+        function updateMinutes(){
+
+            minutes -= 1;
+            document.title =  "-"  + minutes + "- Minute(s)";
+            
+            if(minutes === 0){
+                document.title = "Break Time!";
+                clearInterval(currentIntervaID);
+
+                endSound.play();
+                return;
+            }
+           
+           
+        }
+    
+        function updateTime(){
+            if(timeStarted === false){
+                time = parseFloat(document.querySelector("#number").value);
+            }
+
+        }
+        
+    </script>
+</body>
+
+</html>
